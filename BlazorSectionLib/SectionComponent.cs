@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using static BlazorSectionLib.SectionService;
 
 namespace BlazorSectionLib
@@ -16,7 +14,6 @@ namespace BlazorSectionLib
 
         public SectionComponent()
         {
-            
         }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
@@ -50,7 +47,7 @@ namespace BlazorSectionLib
                     sequence++;
                 }
                 builder.CloseElement();
-            }  
+            }
         }
 
         protected async void Service_ChangesDone(object sender, EventArgs e)

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BlazorSectionLib
 {
@@ -12,8 +11,9 @@ namespace BlazorSectionLib
         {
             public string Name { get; }
             public string Content { get; protected set; }
-            protected Dictionary<string, string> PrivateProperties { get; } = new Dictionary<string, string>();
             public Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
+            protected Dictionary<string, string> PrivateProperties { get; } = new Dictionary<string, string>();
+
             public Dictionary<string, string> AllProperties
             {
                 get
@@ -30,6 +30,7 @@ namespace BlazorSectionLib
                     return d;
                 }
             }
+
             public Element(string name, string content = null)
             {
                 Name = name;
@@ -115,7 +116,7 @@ namespace BlazorSectionLib
         public void Dispose()
         {
             _uriHelper.LocationChanged -= UriHelper_LocationChanged;
-            foreach(Section s in _sections)
+            foreach (Section s in _sections)
             {
                 s.Dispose();
             }
@@ -150,13 +151,16 @@ namespace BlazorSectionLib
         public interface ISection
         {
             string Name { get; }
+
             event EventHandler<EventArgs> ChangesDone;
+
             IReadOnlyCollection<Element> GetElements();
         }
 
-        public class Section:ISection
+        public class Section : ISection
         {
             public string Name { get; private set; }
+
             public event EventHandler<EventArgs> ChangesDone;
 
             public Section(string name)
