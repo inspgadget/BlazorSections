@@ -12,8 +12,8 @@
     <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
     <Copyright>InspGadget</Copyright>
     <PackageTags>ASP.NET Core .NET Razor Blazor Component Sections</PackageTags>
-    <PackageProjectUrl>https://github.com/inspgadget/BlazorSectionsComponent/</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/inspgadget/BlazorSectionsComponent/</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/inspgadget/BlazorSections</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/inspgadget/BlazorSections</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>BlazorSections</PackageId>
