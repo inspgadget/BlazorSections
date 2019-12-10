@@ -89,28 +89,27 @@ namespace BlazorSectionLib
             }
         }
 
+        private string _lastUri;
         private List<Section> _sections = new List<Section>();
-
         private NavigationManager _uriHelper;
 
         public SectionService(NavigationManager uriHelper)
         {
             _uriHelper = uriHelper;
+            _lastUri = _uriHelper.Uri;
             _uriHelper.LocationChanged += UriHelper_LocationChanged;
         }
 
         public void AddElement(string sectionName, Element element)
         {
             Section section = _sections.FirstOrDefault(x => x.Name == sectionName);
-            if (section != null)
+            if (section == null)
             {
-                section.Elements.Add(element);
-                section.InvokeChangesDone();
+                section = new Section(sectionName);
+                _sections.Add(section);
             }
-            else
-            {
-                throw new ArgumentException("Section not found");
-            }
+            section.Elements.Add(element);
+            section.InvokeChangesDone();
         }
 
         public void Dispose()
@@ -129,22 +128,34 @@ namespace BlazorSectionLib
             Section section = _sections.FirstOrDefault(x => x.Name == sectionName);
             if (section == null)
             {
-                Section ns = new Section(sectionName);
-                _sections.Add(ns);
-                return ns;
+                section = new Section(sectionName);
+                _sections.Add(section);
+                
             }
-            else
-            {
-                throw new ArgumentException("Section already exists.");
-            }
+            return section;
         }
 
         private void UriHelper_LocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
         {
-            foreach (Section s in _sections)
+            if (_lastUri != e.Location)
             {
-                s.Elements.Clear();
-                s.InvokeChangesDone();
+                _lastUri = e.Location;
+                foreach (Section s in _sections)
+                {
+                    s.Elements.Clear();
+                    s.InvokeChangesDone();
+                }
+            }
+            else
+            {
+                foreach (Section s in _sections)
+                {
+                    List<Element> tmp = new List<Element>(s.Elements);
+                    s.Elements.Clear();
+                    s.InvokeChangesDone();
+                    s.Elements.AddRange(tmp);
+                    s.InvokeChangesDone();
+                }
             }
         }
 
