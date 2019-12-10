@@ -6,6 +6,8 @@ A component for adding sections similar to ASP.NET Core MVC sections.
   - Adding dynamically javascript
   - Adding dynamically css
   - Creating html-elements (e.g. title, metatags, etc.)
+  
+  *** Currently only tested for server-side Blazor ***
 
 # Planned features
 
@@ -15,7 +17,6 @@ A component for adding sections similar to ASP.NET Core MVC sections.
 
 Install via [Nuget](https://www.nuget.org/).
 
->Server Side
 ```bash
 Install-Package BlazorSections 
 ````
