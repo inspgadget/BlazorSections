@@ -26,7 +26,6 @@ Install-Package BlazorSections
 > #### Startup.cs
 
 ```C#
-using Blazor.Auth0.Models;
 // ...
 
 public void ConfigureServices(IServiceCollection services)
