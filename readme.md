@@ -26,18 +26,16 @@ Install-Package BlazorSections
 > #### Startup.cs
 
 ```C#
-// Import Blazor.Auth0
-using Blazor.Auth0;
 using Blazor.Auth0.Models;
 // ...
 
 public void ConfigureServices(IServiceCollection services)
 {
-	// Other code...
-
-     services.AddScoped<BlazorSectionLib.SectionService>()
+     ...
      
-	// Other code...
+     services.AddScoped<BlazorSectionLib.SectionService>();
+     
+     ...
 }
 
 ```
@@ -72,6 +70,7 @@ Add your sections whereever you want in the _Host.cshtml. The SectonName paramet
 ```HTML
 @page "/head"
 ...
+@implements IDisposable
 @using BlazorSectionLib
 @inject SectionService _ss
 
@@ -85,6 +84,10 @@ Add your sections whereever you want in the _Host.cshtml. The SectonName paramet
     }
 
 ...
+    public void Dispose()
+    {
+        _ss = null;
+    }
 
 }
 ```
