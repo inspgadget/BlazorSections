@@ -1,0 +1,22 @@
+﻿@page "/head"
+
+@implements IDisposable
+@using BlazorSectionLib
+@inject SectionService _ss
+
+<p>Adding title element to &lt;head&gt;</p>
+<p>Adding JQuery to &lt;head&gt;</p>
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        _ss.AddElement("head", new SectionService.Element("title", "test"));
+        _ss.AddElement("head", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+    }
+
+    public void Dispose()
+    {
+        _ss = null;
+    }
+}

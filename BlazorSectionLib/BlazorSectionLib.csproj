@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <AssemblyName>BlazorSectionLib</AssemblyName>
+    <RootNamespace>BlazorSectionLib</RootNamespace>
+    <Authors>InspGadget</Authors>
+    <Product>BlazorSections</Product>
+    <Company />
+    <Description>A Blazor component for adding sections similar to ASP.NET Core MVC sections.</Description>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Copyright>InspGadget</Copyright>
+    <PackageTags>ASP.NET Core .NET Razor Blazor Component Sections</PackageTags>
+    <PackageProjectUrl>https://github.com/inspgadget/BlazorSectionsComponent/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/inspgadget/BlazorSectionsComponent/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>BlazorSections</PackageId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.0.0-rc1.19457.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-rc1.19457.4" />
+  </ItemGroup>
+
+</Project>

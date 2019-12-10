@@ -1,0 +1,23 @@
+﻿@page "/body"
+
+@implements IDisposable
+@using BlazorSectionLib;
+@inject SectionService _ss
+
+<p>Adding inline CSS to &lt;body&gt;</p>
+<p>Adding inline JS to &lt;body&gt;</p>
+<p>Adding Jquery to &lt;body&gt;</p>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        _ss.AddElement("body", new SectionService.InlineStylesheet("*{color:red}"));
+        _ss.AddElement("body", new SectionService.InlineJavaScript("alert('test');"));
+        _ss.AddElement("body", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+    }
+
+    public void Dispose()
+    {
+        _ss = null;
+    }
+}
