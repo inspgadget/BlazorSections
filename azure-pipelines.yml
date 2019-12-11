@@ -33,11 +33,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: AssemblyVersionLoader@1
+  inputs:
+    sourceFileName: '$/BlazorSectionLib/bin/Release/netstandard2.0/BlazorSectionLib.dll'
+
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
     packagesToPack: '**/BlazorSectionLib.csproj'
-    versioningScheme: 'byBuildNumber'
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: '$(AssemblyInfo.AssemblyVersion.Major).$(AssemblyInfo.AssemblyVersion.Minor).$(AssemblyInfo.AssemblyVersion.Build)'
 
 - task: NuGetCommand@2
   inputs:
