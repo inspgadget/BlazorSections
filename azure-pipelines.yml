@@ -35,7 +35,7 @@ steps:
 
 - task: AssemblyVersionLoader@1
   inputs:
-    sourceFileName: '$/BlazorSectionLib/bin/Release/netstandard2.0/BlazorSectionLib.dll'
+    sourceFileName: 'BlazorSectionLib/bin/Release/netstandard2.0/BlazorSectionLib.dll'
 
 - task: NuGetCommand@2
   inputs:
