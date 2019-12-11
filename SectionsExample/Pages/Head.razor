@@ -11,8 +11,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _ss.AddElement("head", new SectionService.Element("title", "test"));
-        _ss.AddElement("head", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        await Task.Run(() =>
+        {
+            _ss.AddElement("head", new SectionService.Element("title", "test"));
+            _ss.AddElement("head", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        });
     }
 
     public void Dispose()

@@ -11,9 +11,12 @@
 @code {
     protected override async Task OnInitializedAsync()
     {
-        _ss.AddElement("body", new SectionService.InlineStylesheet("*{color:red}"));
-        _ss.AddElement("body", new SectionService.InlineJavaScript("alert('test');"));
-        _ss.AddElement("body", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        await Task.Run(() =>
+        {
+            _ss.AddElement("body", new SectionService.InlineStylesheet("*{color:red}"));
+            _ss.AddElement("body", new SectionService.InlineJavaScript("alert('test');"));
+            _ss.AddElement("body", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        });
     }
 
     public void Dispose()
