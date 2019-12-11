@@ -36,6 +36,6 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '**/BlazorSectionLib/bin/Release/*.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'NuGet.org'
