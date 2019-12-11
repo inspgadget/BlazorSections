@@ -32,3 +32,16 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/BlazorSectionLib.csproj'
+    versioningScheme: 'byBuildNumber'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'NuGet.org'
