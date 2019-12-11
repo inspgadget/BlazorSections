@@ -78,8 +78,11 @@ Add your sections whereever you want in the _Host.cshtml. The SectonName paramet
 @code {
     protected override async Task OnInitializedAsync()
     {
-        _ss.AddElement("head", new SectionService.Element("title", "Jquery loaded"));
-        _ss.AddElement("head", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        await Task.Run(() =>
+        {
+            _ss.AddElement("head", new SectionService.Element("title", "Jquery loaded"));
+            _ss.AddElement("head", new SectionService.Javascript("https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"));
+        });
     }
 
 ...
