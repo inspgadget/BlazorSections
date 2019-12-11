@@ -19,7 +19,8 @@
     <PackageId>BlazorSections</PackageId>
     <AssemblyVersion>1.0.2.0</AssemblyVersion>
     <FileVersion>1.0.2.0</FileVersion>
-	 <PackageVersion>$(AssemblyVersion)</PackageVersion>
+    <PackageVersion>$(AssemblyVersion)</PackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
 
