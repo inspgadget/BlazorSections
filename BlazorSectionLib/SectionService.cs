@@ -11,8 +11,22 @@ namespace BlazorSectionLib
         {
             public string Name { get; }
             public string Content { get; protected set; }
-            public Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
+            public int Sequence { get; set; } = -1;
+            public bool ShouldUpdate { get; set; }
+            protected Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
             protected Dictionary<string, string> PrivateProperties { get; } = new Dictionary<string, string>();
+
+            public void AddProperty(string name, string value)
+            {
+                Properties.Add(name, value);
+                ShouldUpdate = true;
+            }
+
+            public void RemoveProperty(string name)
+            {
+                Properties.Remove(name);
+                ShouldUpdate = true;
+            }
 
             public Dictionary<string, string> AllProperties
             {
@@ -130,7 +144,7 @@ namespace BlazorSectionLib
             {
                 section = new Section(sectionName);
                 _sections.Add(section);
-                
+
             }
             return section;
         }
@@ -150,10 +164,7 @@ namespace BlazorSectionLib
             {
                 foreach (Section s in _sections)
                 {
-                    List<Element> tmp = new List<Element>(s.Elements);
-                    s.Elements.Clear();
-                    s.InvokeChangesDone();
-                    s.Elements.AddRange(tmp);
+                    s.Elements.Where(x => x is InlineJavaScript).ToList().ForEach(x => { x.ShouldUpdate = true; x.Sequence = -1; });
                     s.InvokeChangesDone();
                 }
             }
@@ -165,7 +176,7 @@ namespace BlazorSectionLib
 
             event EventHandler<EventArgs> ChangesDone;
 
-            IReadOnlyCollection<Element> GetElements();
+            List<Element> Elements { get; }
         }
 
         public class Section : ISection
@@ -179,12 +190,7 @@ namespace BlazorSectionLib
                 Name = name;
             }
 
-            internal List<Element> Elements { get; private set; } = new List<Element>();
-
-            public IReadOnlyCollection<Element> GetElements()
-            {
-                return Elements.AsReadOnly();
-            }
+            public List<Element> Elements { get; private set; } = new List<Element>();
 
             public void InvokeChangesDone()
             {
